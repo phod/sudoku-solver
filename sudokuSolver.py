@@ -14,7 +14,12 @@ def printBoard():
         for cell in row:
             print cell,
         print
-
+'''
+TODO:
+Change checklist initialisation, into short hand (currently forgotten
+and no internet source).
+Change checklist check if possible, else make a function to check.
+'''
 def checkRows():
     global board
     
@@ -27,7 +32,13 @@ def checkRows():
             if not num:
                 return False
     return True
-    
+
+'''
+TODO:
+Change checklist initialisation, into short hand (currently forgotten
+and no internet source).
+Change checklist check if possible, else make a function to check.
+'''    
 def checkCols():
     global board
     for i in range(0,9):
@@ -39,17 +50,28 @@ def checkCols():
                 return False
         return True
 
+'''
+TODO:
+Finish implementing, will need some thinking to organise elegantly
+'''
 def checkBoxes():
-    global baord
+    global board
     box = 3
-    for mult in range(1,4):
-        print mult
-
+    for x in range(0, box):
+        for y in range(0, box):
+            for i in range(0,box):
+                for j in range(0, box):
+                    print board[y*box + i][x*box + j],
+                print
+            print "------"
+        print "*****"
+    return True
+        
 def checkSolve():
     return checkRows() and checkCols() and checkBoxes()
     
+def solve():
+    print "I will be smart and finish a Sudoku one day!"
     
 printBoard()
-print checkRows()
-print checkCols()
-print checkBoxes()
+print checkSolve()
