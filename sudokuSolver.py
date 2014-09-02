@@ -34,39 +34,27 @@ def printBoard():
         print
 '''
 TODO:
-Change checklist initialisation, into short hand (currently forgotten
-and no internet source).
 Change checklist check if possible, else make a function to check.
 '''
 def checkRows():
     global board
-    
+    checklist = [False]*9
     for row in board:
-        checklist = [False, False, False, False, False, False, False, False, False]
         for num in row:
             checklist[num-1] = True
-        
-        for num in checklist:
-            if not num:
-                return False
-    return True
+    return all(checklist)
 
 '''
 TODO:
-Change checklist initialisation, into short hand (currently forgotten
-and no internet source).
 Change checklist check if possible, else make a function to check.
 '''    
 def checkCols():
     global board
+    checklist = [False]*9
     for i in range(0,9):
-        checklist = [False, False, False, False, False, False, False, False, False]
         for row in board:
             checklist[row[i]-1] = True
-        for num in checklist:
-            if not num:
-                return False
-        return True
+    return all(checklist)
 
 '''
 TODO:
@@ -74,17 +62,21 @@ Finish implementing, will need some thinking to organise elegantly
 '''
 def checkBoxes():
     global board
-    box = 3
-    for x in range(0, box):
-        for y in range(0, box):
-            for i in range(0,box):
-                for j in range(0, box):
-                    print board[y*box + i][x*box + j],
-                print
-            print "------"
-        print "*****"
+    checkBox(1)
     return True
-        
+
+'''
+Checks a 3x3 space around the starting space
+'''
+def checkBox(start):
+    global board
+    boxSize = 3
+    checklist = [False]*9
+    for row in range(0, boxSize):
+        for col in range(0, boxSize):
+            checklist[board[row][col]-1] = True
+    return all(checklist)
+    
 def checkSolve():
     return checkRows() and checkCols() and checkBoxes()
     
