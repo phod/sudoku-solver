@@ -1,0 +1,16 @@
+***CURRENTLY IN DEVELOPMENT***
+Sudoku Solver
+Author: Philip Hodder
+Licence: GPLv3
+
+About:
+THIS PROGRAM IS IN DEVELOPMENT
+Solves a sudoku puzzle using a look-ahead backtracking algorithm.
+
+How to Use:
+After downloading the source, you can currently run by modifying the global variable board to be equivalent to the puzzle you are trying to solve.
+
+Future features:
+Will actually solve a sudoku.
+Will be able to read in from stdin
+Will include test files for each function.
