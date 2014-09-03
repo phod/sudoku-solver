@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
+import fileinput
 
 board = [[1,2,3,4,5,6,7,8,9],
          [4,5,6,7,8,9,1,2,3],
@@ -129,9 +130,21 @@ def findEmpty():
                 return val
     return [-1,-1]
     
-
+def isNum(c):
+    return c>='0' and c<='9'
+    
 def readInput():
-    print "I can't read"
+    global board
+    row = 0
+    col = 0
+    for line in fileinput.input():
+        for ch in line:
+            if (isNum(ch)):
+                board[row][col]=int(ch)
+                col += 1
+                if(col==9):
+                    col = 0
+                    row += 1
 
 def main():
     readInput()
