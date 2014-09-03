@@ -26,6 +26,9 @@ board = [[1,2,3,4,5,6,7,8,9],
          [6,7,8,9,1,2,3,4,5],
          [9,1,2,3,4,5,6,7,8]]
 
+'''
+Print the board row by row
+'''
 def printBoard():
     global board
     for row in board:
@@ -33,8 +36,7 @@ def printBoard():
             print cell,
         print
 '''
-TODO:
-Change checklist check if possible, else make a function to check.
+Checks to see if any numbers are double up in each row
 '''
 def checkRows():
     global board 
@@ -49,8 +51,7 @@ def checkRows():
     return True
 
 '''
-TODO:
-Change checklist check if possible, else make a function to check.
+Checks to see if any numbers are doubled up in each col
 '''    
 def checkCols():
     global board
@@ -116,7 +117,7 @@ def solve():
             solved = solve()
         if (solved):
             return True
-                    
+    board[row][col]=0                
     return False
             
 def findEmpty():
@@ -131,8 +132,14 @@ def findEmpty():
 
 def readInput():
     print "I can't read"
-    
-printBoard()
-print checkSolve()
-solve()
-printBoard()
+
+def main():
+    readInput()
+    if (solve()):
+        print "The solution to the sudoku is:"
+        printBoard()
+    else:
+        print "There is no solution to the sudoku:"
+        printBoard()
+        
+main()
