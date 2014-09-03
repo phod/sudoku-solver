@@ -18,7 +18,7 @@
 
 board = [[1,2,3,4,5,6,7,8,9],
          [4,5,6,7,8,9,1,2,3],
-         [7,9,9,1,2,3,4,5,6],
+         [7,8,9,1,2,3,4,5,6],
          [2,3,4,5,6,7,8,9,1],
          [5,6,7,8,9,1,2,3,4],
          [8,9,1,2,3,4,5,6,7],
@@ -37,12 +37,16 @@ TODO:
 Change checklist check if possible, else make a function to check.
 '''
 def checkRows():
-    global board
-    checklist = [False]*9
+    global board 
     for row in board:
+        checklist = [False]*9
         for num in row:
+            if (num-1 == -1):
+                continue
+            if (checklist[num-1]):
+                return False
             checklist[num-1] = True
-    return all(checklist)
+    return True
 
 '''
 TODO:
@@ -50,15 +54,18 @@ Change checklist check if possible, else make a function to check.
 '''    
 def checkCols():
     global board
-    checklist = [False]*9
     for i in range(0,9):
+        checklist = [False]*9
         for row in board:
+            if (row[i]-1 == -1):
+                continue
+            if (checklist[row[i]-1]):
+                return False
             checklist[row[i]-1] = True
-    return all(checklist)
+    return True
 
 '''
-TODO:
-Finish implementing, will need some thinking to organise elegantly
+Checks all 3x3 boxes in the sudoku puzzle
 '''
 def checkBoxes():
     global board
@@ -78,8 +85,12 @@ def checkBox(x,y):
     checklist = [False]*9
     for row in range(y, y+boxSize):
         for col in range(x, x+boxSize):
+            if (board[row][col]-1 == -1):
+                continue
+            if (checklist[board[row][col]-1]):
+                return False
             checklist[board[row][col]-1] = True
-    return all(checklist)
+    return True
     
 def checkSolve():
     return checkRows() and checkCols() and checkBoxes()
