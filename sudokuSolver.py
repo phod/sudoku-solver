@@ -94,9 +94,45 @@ def checkBox(x,y):
     
 def checkSolve():
     return checkRows() and checkCols() and checkBoxes()
-    
+
+'''
+Algorithm to implement.
+Find the next empty position
+insert a number between 1 and 9
+if legal call solve
+if solved, break
+'''
 def solve():
-    print "I will be smart and finish a Sudoku one day!"
+    global board
+    pos = findEmpty()
+    row = pos[0]
+    col = pos[1]
+    solved = False
+    if (col == -1 and row == -1):
+        return True
+    for i in range (1, 10):
+        board[row][col]=i
+        if checkSolve():
+            solved = solve()
+        if (solved):
+            return True
+                    
+    return False
+            
+def findEmpty():
+    global board
+    for row in range(0,9):
+        for col in range(0,9):
+            if (board[row][col]==0):
+                val = [row,col]
+                return val
+    return [-1,-1]
+    
+
+def readInput():
+    print "I can't read"
     
 printBoard()
 print checkSolve()
+solve()
+printBoard()
