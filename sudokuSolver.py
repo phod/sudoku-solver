@@ -18,7 +18,7 @@
 
 board = [[1,2,3,4,5,6,7,8,9],
          [4,5,6,7,8,9,1,2,3],
-         [7,8,9,1,2,3,4,5,6],
+         [7,9,9,1,2,3,4,5,6],
          [2,3,4,5,6,7,8,9,1],
          [5,6,7,8,9,1,2,3,4],
          [8,9,1,2,3,4,5,6,7],
@@ -62,18 +62,22 @@ Finish implementing, will need some thinking to organise elegantly
 '''
 def checkBoxes():
     global board
-    checkBox(1)
+    boxSize = 3
+    for i in range(0,boxSize):
+        for j in range(0, boxSize):
+            if (not checkBox(i*boxSize,j*boxSize)):
+                return False
     return True
 
 '''
 Checks a 3x3 space around the starting space
 '''
-def checkBox(start):
+def checkBox(x,y):
     global board
     boxSize = 3
     checklist = [False]*9
-    for row in range(0, boxSize):
-        for col in range(0, boxSize):
+    for row in range(y, y+boxSize):
+        for col in range(x, x+boxSize):
             checklist[board[row][col]-1] = True
     return all(checklist)
     
