@@ -3,14 +3,35 @@ Sudoku Solver
 Author: Philip Hodder
 Licence: GPLv3
 
+----------
 About:
-THIS PROGRAM IS IN DEVELOPMENT
 Solves a sudoku puzzle using a look-ahead backtracking algorithm.
 
+----------
 How to Use:
-After downloading the source, you can currently run by modifying the global variable board to be equivalent to the puzzle you are trying to solve.
+After downloading the source, run as follows:
 
+$ python sudokuSolver.py
+
+sudokuSolver expects input from STDIN. So either redirect an input file or type in a board manually. See input format for details.
+
+----------
+Input Format:
+The expected input is 81 individual numbers between 0 and 9 inclusive. 1 - 9 are valid board numbers, while 0 represents an empty cell.
+The numbers can be separated by spaces or newlines. For readability, it is best to write in a similar format to a sudoku puzzle like so:
+
+1 3 8 6 0 0 0 0 0
+0 0 0 3 0 0 1 2 0
+0 0 0 0 0 0 4 0 0
+3 0 0 4 0 0 5 0 0
+0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0
+
+Or without spaces, if preferred. See textFiles directory for example input.
+
+----------
 Future features:
-Will actually solve a sudoku.
-Will be able to read in from stdin
 Will include test files for each function.
