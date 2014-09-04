@@ -71,7 +71,11 @@ def checkBoxes():
     return True
 
 '''
-Checks a 3x3 space around the starting space
+Checks a 3x3 space around the starting space.
+The starting pos defines the upper left position of the 3x3 box
+(x,y) 2 3
+  4   5 6
+  7   8 9
 '''
 def checkBox(x,y):
     global board
@@ -85,16 +89,17 @@ def checkBox(x,y):
                 return False
             checklist[board[row][col]-1] = True
     return True
-    
+
+'''
+Check to see the current board does not violate any sudoku rules
+'''
 def checkSolve():
     return checkRows() and checkCols() and checkBoxes()
 
 '''
-Algorithm to implement.
-Find the next empty position
-insert a number between 1 and 9
-if legal call solve
-if solved, break
+Solves the sudoku puzzle
+If a valid solution is found, will return True
+If no solution can be found, will return False
 '''
 def solve():
     global board
@@ -112,7 +117,11 @@ def solve():
             return True
     board[row][col]=0                
     return False
-            
+
+'''
+Finds the next cell that has no number (0) currently in it
+Returns an array, a, with the a[0]=row and a[1]=col
+'''
 def findEmpty():
     global board
     for row in range(0,9):
@@ -121,10 +130,18 @@ def findEmpty():
                 val = [row,col]
                 return val
     return [-1,-1]
-    
+
+'''
+Checks to see if a char is an ASCII character between 0 and 9
+'''
 def isNum(c):
     return c>='0' and c<='9'
-    
+
+'''
+Reads numbers from stdin to create a sudoku board.
+Expects to recieve 81 numbers, which can be separated by other characters or
+white space.
+'''
 def readInput():
     global board
     row = 0
@@ -138,6 +155,10 @@ def readInput():
                     col = 0
                     row += 1
 
+'''
+Calls functions to read in a board, try and solve the sudoku, and
+then prints if there is a solution or now.
+'''
 def main():
     readInput()
     if (solve()):
@@ -147,4 +168,4 @@ def main():
         print "There is no solution to the sudoku:"
         printBoard()
         
-main()
+main() #start the program
