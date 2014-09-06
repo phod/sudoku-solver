@@ -28,6 +28,7 @@ def printBoard():
         for cell in row:
             print cell,
         print
+        
 '''
 Checks to see if any numbers are double up in each row
 '''
