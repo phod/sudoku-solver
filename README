@@ -30,7 +30,7 @@ The numbers can be separated by spaces or newlines. For readability, it is best 
 0 0 0 0 0 0 0 0 0
 
 Or without spaces, if preferred. See textFiles directory for example input.
-
+   
 ----------
 Future features:
 Will include test files for each function.
