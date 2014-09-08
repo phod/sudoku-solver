@@ -158,7 +158,7 @@ def readInput():
 
 '''
 Calls functions to read in a board, try and solve the sudoku, and
-then prints if there is a solution or now.
+then print if there is a solution or not.
 '''
 def main():
     readInput()
