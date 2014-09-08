@@ -60,18 +60,6 @@ def checkCols():
     return True
 
 '''
-Checks all 3x3 boxes in the sudoku puzzle
-'''
-def checkBoxes():
-    global board
-    boxSize = 3
-    for i in range(0,boxSize):
-        for j in range(0, boxSize):
-            if (not checkBox(i*boxSize,j*boxSize)):
-                return False
-    return True
-
-'''
 Checks a 3x3 space around the starting space.
 The starting pos defines the upper left position of the 3x3 box
 (x,y) 2 3
@@ -92,11 +80,36 @@ def checkBox(x,y):
     return True
 
 '''
+Checks all 3x3 boxes in the sudoku puzzle
+'''
+def checkBoxes():
+    global board
+    boxSize = 3
+    for i in range(0,boxSize):
+        for j in range(0, boxSize):
+            if (not checkBox(i*boxSize,j*boxSize)):
+                return False
+    return True
+
+'''
 Check to see the current board does not violate any sudoku rules
 '''
 def checkSolve():
     return checkRows() and checkCols() and checkBoxes()
 
+'''
+Finds the next cell that has no number (0) currently in it
+Returns an array, a, with the a[0]=row and a[1]=col
+'''
+def findEmpty():
+    global board
+    for row in range(0,9):
+        for col in range(0,9):
+            if (board[row][col]==0):
+                val = [row,col]
+                return val
+    return [-1,-1]
+    
 '''
 Solves the sudoku puzzle
 If a valid solution is found, will return True
@@ -118,19 +131,6 @@ def solve():
             return True
     board[row][col]=0                
     return False
-
-'''
-Finds the next cell that has no number (0) currently in it
-Returns an array, a, with the a[0]=row and a[1]=col
-'''
-def findEmpty():
-    global board
-    for row in range(0,9):
-        for col in range(0,9):
-            if (board[row][col]==0):
-                val = [row,col]
-                return val
-    return [-1,-1]
 
 '''
 Checks to see if a char is an ASCII character between 0 and 9
