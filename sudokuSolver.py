@@ -16,8 +16,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 import fileinput
+import sys
 
 board = [[0 for i in range(9)]for i in range(9)]
+
+def error(message):
+    print "Error:", message
+    sys.exit()
 
 '''
 Print the board row by row
@@ -147,14 +152,20 @@ def readInput():
     global board
     row = 0
     col = 0
+    numCells = 0
     for line in fileinput.input():
         for ch in line:
             if (isNum(ch)):
                 board[row][col]=int(ch)
                 col += 1
-                if(col==9):
+                numCells += 1
+                if (col==9):
                     col = 0
                     row += 1
+    if (numCells < 81):
+        error("Not enough input values given")
+    if (numCells > 81):
+        error("Too many input values given")
 
 '''
 Calls functions to read in a board, try and solve the sudoku, and
